@@ -1,10 +1,11 @@
+import { Buscador } from "../components/Buscador";
+import { MostrarDatos } from "../components/MostrarDatos";
 
 function App() {
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+      <Buscador />
+      <MostrarDatos/>
     </div>
   );
 }
