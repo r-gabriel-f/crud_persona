@@ -3,9 +3,10 @@ import { ModalCrearActualizar } from "./ModalCrearActualizar";
 
 export const Buscador = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [selectedItem, setSelectedItem] = useState(null);
   const openModal = () => {
     setIsModalOpen(true);
+    setSelectedItem(null);
   };
 
   const closeModal = () => {
@@ -13,7 +14,6 @@ export const Buscador = () => {
   };
 
   const handleAddOrUpdate = (newItem) => {
-    // Implementa lógica para agregar o actualizar el elemento
     console.log(newItem);
   };
   return (
@@ -78,6 +78,7 @@ export const Buscador = () => {
         isOpen={isModalOpen}
         closeModal={closeModal}
         onSubmit={handleAddOrUpdate}
+        data={selectedItem}
       />
     </form>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 
 Modal.setAppElement("#root");
@@ -8,9 +8,27 @@ export const ModalCrearActualizar = ({
   onSubmit,
   data,
 }) => {
-  const [formData, setFormData] = useState(
-    data || { nombre: "", edad: "", telefono: "", direccion: "" }
-  );
+  const [formData, setFormData] = useState({
+    nombre: "",
+    edad: "",
+    telefono: "",
+    direccion: "",
+  });
+
+  useEffect(() => {
+    // Cuando se recibe nuevo 'data', actualiza el formulario
+    if (data) {
+      setFormData(data);
+    } else {
+      // Si no hay 'data', reinicia el formulario
+      setFormData({
+        nombre: "",
+        edad: "",
+        telefono: "",
+        direccion: "",
+      });
+    }
+  }, [data]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
