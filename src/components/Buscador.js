@@ -17,7 +17,8 @@ export const Buscador = () => {
     console.log(newItem);
   };
   return (
-    <form class="flex items-center m-5">
+    <div>
+<form class="flex items-center m-5">
       <div class="relative w-full">
         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
           <svg
@@ -65,7 +66,9 @@ export const Buscador = () => {
         </svg>
         <span class="sr-only">Search</span>
       </button>
-      <button
+      
+    </form>
+    <button
         type="submit"
         onClick={() => {
           openModal();
@@ -80,6 +83,7 @@ export const Buscador = () => {
         onSubmit={handleAddOrUpdate}
         data={selectedItem}
       />
-    </form>
+    </div>
+    
   );
 };
