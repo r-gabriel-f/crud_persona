@@ -1,28 +1,17 @@
 import React, { useState } from "react";
 import { ModalCrearActualizar } from "./ModalCrearActualizar";
 import { DataUser } from "../data/DataUser";
+import { HooksMostrarDatos } from "../hooks/HooksMostrarDatos";
 
 export const MostrarDatos = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  const {
+    selectedItem,
+    isModalOpen,
+    openModal,
+    closeModal,
+    handleEdit,
+  } = HooksMostrarDatos();
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleEdit = (item) => {
-    setSelectedItem(item);
-    // Implementa lógica para abrir el modal con los datos del elemento seleccionado
-    openModal();
-  };
-
-  const handleDelete = (item) => {
-    // Implementa lógica para eliminar el elemento
-    console.log("Eliminar", item);
-  };
   return (
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-5">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -77,18 +66,17 @@ export const MostrarDatos = () => {
                     </a>
                   </div>
                 </div>
-                
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       <ModalCrearActualizar
-        isOpen={!!selectedItem}
-        closeModal={() => setSelectedItem(null)}
+        isOpen={isModalOpen}
+        closeModal={closeModal}
         onSubmit={(newItem) => {
           console.log(newItem);
-          setSelectedItem(null);
+          closeModal();
         }}
         data={selectedItem}
       />
