@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
+import { HooksCrearActualizar } from "../hooks/HooksCrearActualizar";
 
 Modal.setAppElement("#root");
 export const ModalCrearActualizar = ({
@@ -8,41 +9,7 @@ export const ModalCrearActualizar = ({
   onSubmit,
   data,
 }) => {
-  const [formData, setFormData] = useState({
-    nombre: "",
-    edad: "",
-    telefono: "",
-    direccion: "",
-  });
-
-  useEffect(() => {
-    // Cuando se recibe nuevo 'data', actualiza el formulario
-    if (data) {
-      setFormData(data);
-    } else {
-      // Si no hay 'data', reinicia el formulario
-      setFormData({
-        nombre: "",
-        edad: "",
-        telefono: "",
-        direccion: "",
-      });
-    }
-  }, [data]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(formData);
-    closeModal();
-  };
+  const { formData, handleChange, handleSubmit, openModal } = HooksCrearActualizar(data);
 
   return (
     <Modal
